@@ -38,18 +38,19 @@ ssize_t readln(int filedes, void* buf, size_t nbyte){
     /**
      *
      * Read from filedes and stores it in buffer until it finds 'newline' character ('\n'). 
-     * If it finds it, return amout of bytes read 
+     * If it finds it, return amout of bytes read     return bytes_read;
      *
      */
-    while (read(filedes, &c, nbyte)){
+    while (read(filedes, &c, nbyte) > 0){
         aux_buffer[bytes_read] = c;
         if(c == '\n'){
-            return bytes_read+1;
+            aux_buffer[++bytes_read] = '\0';    /* Gotta null terminate the string manually */
+            return bytes_read;
         } else {
             bytes_read++;
         }
     }
-    return bytes_read;
+    return 0;
 }
 
 int main(int argc, char* argv[]){
@@ -85,12 +86,7 @@ int main(int argc, char* argv[]){
      *
      */
     while((nbytes = readln(fd, &buf, 1)) > 0){
-        char output[256];                   /* String where program output is created */
-        buf[nbytes-1] = '\0';               /* Strings coming from read() are not null terminated, gotta do that manually */
-        sprintf(output, "%d ", lines_read); /* Using sprintf() to prefix the output with line number and whitespace */
-        strcat(output, buf);                /* Concatenate prefix and line */
-        
-        printf("%s\n", output);             /* And print */
+        printf("%d %s", lines_read, buf);
         lines_read++;                       /* Next line number */
     }
 
