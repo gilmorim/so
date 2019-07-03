@@ -2,9 +2,9 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 LDFLAGS =
 
-SRC = 10proc.c
+SRC = 10proc_v3.c
 OBJ = $(SRC:.c=.o)
-EXEC = 10proc
+EXEC = 10proc_v3
 
 all: $(EXEC)
 

@@ -3,14 +3,13 @@
  * @file	fork.c
  * @github	https://github.com/gilmorim
  * @author	Gilberto Morim <gilgmorim@gmail.com>
- * @date	2019-06-29
- * @brief	Main process creates a child process. Then, both of them print their PIDs and their parent's PIDs as well.
+ * @date	2019-07-03
+ * @brief	Parent process creates a child process, then both of them print their Process ID (PID) before finishing.
  * 
  * You can run this program by opening a terminal on the directory the file is, type 'make' (which will compile this source file)
  * and then run './fork'
  * 
  */ 
-
 
 #include <stdio.h>      /* For printf() */
 #include <unistd.h>     /* For fork(), _exit(), getpid() and getppid() */
@@ -48,9 +47,9 @@ int main(){
             
     if(pid == 0){
         /* This code section will run on the child process, so look at it from the childs point of view */
-        int child_pid = getpid();           /* Use getpid() to get current process PID */
-        int childs_parent_pid = getppid();  /* Use getppid() to get current process' parent PID */
-        printf("I'm a child.\nMy PID is: %d.\nMy parent is: %d.\n", child_pid, childs_parent_pid);
+        int my_pid = getpid();           /* Use getpid() to get current process PID */
+        int my_parents_pid = getppid();  /* Use getppid() to get current process' parent PID */
+        printf("I'm a child.\nMy PID is: %d.\nMy parent is: %d.\n", my_pid, my_parents_pid);
         _exit(0);
     } 
 
@@ -61,10 +60,10 @@ int main(){
     wait(0);
 
     /* Remember: look at this part of the code from the parent's point of view. */
-    int sons_pid = pid; 
-    int parents_pid = getpid();
-    int parents_parent_pid = getppid();
-    printf("I'm a parent.\nMy PID is: %d.\nMy parent is: %d.\nMy son is: %d.\n", parents_pid, parents_parent_pid, sons_pid);
+    int my_sons_pid = pid; 
+    int my_pid = getpid();
+    int my_parents_pid = getppid();
+    printf("I'm a parent.\nMy PID is: %d.\nMy parent is: %d.\nMy son is: %d.\n", my_pid, my_parents_pid, my_sons_pid);
 
     return 1;    
 }
