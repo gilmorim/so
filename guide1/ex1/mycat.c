@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <unistd.h> /* For system calls open(), read(), write() */
 
-int main(int argc, char* argv[]){
+int main(){
     char c; /* Where each character of user input will be stored */
     
     /**
