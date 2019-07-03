@@ -51,7 +51,7 @@ int main(){
         int status = 0;
         wait(&status);
         
-        /* Check if process terminated normally */
+        /* Check if process terminated normally with WIFEXITED() */
         if(WIFEXITED(status)){
             printf("I am parent, and my child of order %d just exited\n", WEXITSTATUS(status)); /* WEXITSTATUS() to retrieve exit value */
         }
