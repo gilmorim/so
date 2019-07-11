@@ -8,7 +8,7 @@
  *          in ascending order the lines where target was found.
  * 
  * You can run this program by opening a terminal on the directory the file is, type 'make' (which will compile this source file)
- * and then run './matrix'
+ * and then run './matrix_v2'
  */ 
 
 #include <stdio.h>              /* For printf() */
